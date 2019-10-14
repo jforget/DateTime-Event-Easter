@@ -48,7 +48,7 @@ BEGIN {
   }
 }
 
-plan tests => 1 + 6 + 4 * 2 * (1 + 5) + 8 + 8;
+plan tests => 1 + 6 + 4 * 2 * (1 + 5) + 8 + 10;
 
 # 1 test
 like( exception { DateTime::Event::Easter->new(as =>  'spin'); } , qr/Argument 'as' must be 'point' or 'span'./ , "Argument 'as' must be 'point' or 'span'." );
@@ -91,7 +91,7 @@ like( exception { $west->as_set(from => $d1                             , inclus
 like( exception { $west->as_set(from => '2019-01-01', to => $d9         , inclusive => 1); } , qr/You must specify both a 'from' and a 'to' datetime/ , "Wrong begin date" );
 like( exception { $west->as_set(from => $d1,          to => '2019-12-31', inclusive => 1); } , qr/You must specify both a 'from' and a 'to' datetime/ , "Wrong end date" );
 
-# 8 tests
+# 10 tests
 like( exception { easter               ('a') } , qr/Year value '.*' should be numeric./ , "Wrong numeric argument to easter" ) ;
 like( exception { golden_number        ('a') } , qr/Year value '.*' should be numeric./ , "Wrong numeric argument to golden_number" ) ;
 like( exception { western_epact        ('a') } , qr/Year value '.*' should be numeric./ , "Wrong numeric argument to western_epact" ) ;
@@ -100,3 +100,5 @@ like( exception { western_sunday_number('a') } , qr/Year value '.*' should be nu
 like( exception { eastern_epact        ('a') } , qr/Year value '.*' should be numeric./ , "Wrong numeric argument to eastern_epact" ) ;
 like( exception { eastern_sunday_letter('a') } , qr/Year value '.*' should be numeric./ , "Wrong numeric argument to eastern_sunday_letter" ) ;
 like( exception { eastern_sunday_number('a') } , qr/Year value '.*' should be numeric./ , "Wrong numeric argument to eastern_sunday_number" ) ;
+like( exception { DateTime::Event::Easter::western_easter('a') } , qr/Year value '.*' should be numeric./ , "Wrong numeric argument to eastern_easter" ) ;
+like( exception { DateTime::Event::Easter::eastern_easter('a') } , qr/Year value '.*' should be numeric./ , "Wrong numeric argument to eastern_easter" ) ;

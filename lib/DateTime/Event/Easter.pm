@@ -716,6 +716,13 @@ This method switches output to points rather than spans. See the 'as' attribute
 of the constructor for more information. The method returns the object for easy
 chaining.
 
+=item * as_old_set()
+
+Deprecated method.
+
+In the next  version (1.09) or in two years  (October 2021), whichever
+comes last,  this method will emit  a warning. And within  another two
+years / one version, this method will be removed.
 
 =back
 
@@ -817,8 +824,26 @@ falls in January or February.
 
 =item * easter($year)
 
-Given a Gregorian year, this method  will return a DateTime object for
-Western Easter Sunday in that year.
+Given a Gregorian year, this  subroutine will return a DateTime object
+for Western Easter Sunday in that year.
+
+=item * western_easter($year)
+
+Given a Gregorian year, this  subroutine will return a DateTime object
+for  Western Easter  Sunday  in  that year.  But  unlike the  previous
+subroutine,  C<western_easter> cannot  be imported.  You must  use its
+fully qualified name:
+
+  my $date = DateTime::Event::Easter::western_easter($year);
+
+=item * eastern_easter($year)
+
+Given a Julian year, this subroutine will return a DateTime object for
+Eastern  Easter  Sunday  in  that year.  And  like  C<western_easter>,
+C<eastern_easter> cannot be imported. You must use its fully qualified
+name:
+
+  my $date = DateTime::Event::Easter::eastern_easter($year);
 
 =back
 
