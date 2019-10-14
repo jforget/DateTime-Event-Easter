@@ -87,7 +87,11 @@ sub following {
   my $self   = shift;
   my $dt     = shift;
   croak ("Dates need to be datetime objects")
-    unless $dt->can('utc_rd_values');
+    unless defined($dt)
+        && ref($dt) ne ''
+        && ref($dt) ne 'HASH'
+        && ref($dt) ne 'ARRAY'
+        && $dt->can('utc_rd_values');
   my $result = $self->_following_point($dt);
   return ($self->{as} eq 'span') 
       ? _tospan($result)
@@ -156,7 +160,11 @@ sub previous {
   my $self   = shift;
   my $dt     = shift;
   croak ("Dates need to be datetime objects")
-    unless $dt->can('utc_rd_values');
+    unless defined($dt)
+        && ref($dt) ne ''
+        && ref($dt) ne 'HASH'
+        && ref($dt) ne 'ARRAY'
+        && $dt->can('utc_rd_values');
   my $result = $self->_previous_point($dt);
   return ($self->{as} eq 'span') 
       ? _tospan($result)
@@ -195,7 +203,11 @@ sub closest {
   my $self = shift;
   my $dt   = shift;
   croak ("Dates need to be datetime objects")
-    unless $dt->can('utc_rd_values');
+    unless defined($dt)
+        && ref($dt) ne ''
+        && ref($dt) ne 'HASH'
+        && ref($dt) ne 'ARRAY'
+        && $dt->can('utc_rd_values');
 
   my $class = ref($dt);
 
@@ -222,7 +234,11 @@ sub closest {
 sub is {
   my ($self, $dt) = @_;
   croak ("Dates need to be datetime objects")
-    unless $dt->can('utc_rd_values');
+    unless defined($dt)
+        && ref($dt) ne ''
+        && ref($dt) ne 'HASH'
+        && ref($dt) ne 'ARRAY'
+        && $dt->can('utc_rd_values');
 
   my $class = ref($dt);
   if ($self->{easter} eq 'western' && $class ne 'DateTime') {

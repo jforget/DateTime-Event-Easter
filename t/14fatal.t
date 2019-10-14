@@ -48,7 +48,7 @@ BEGIN {
   }
 }
 
-plan tests => 1 + 6 + 4 * 2 * (1 + 4) + 8 + 8;
+plan tests => 1 + 6 + 4 * 2 * (1 + 5) + 8 + 8;
 
 # 1 test
 like( exception { DateTime::Event::Easter->new(as =>  'spin'); } , qr/Argument 'as' must be 'point' or 'span'./ , "Argument 'as' must be 'point' or 'span'." );
@@ -70,6 +70,7 @@ for my $method (qw/following previous closest is/) {
   for my $pair ([ "2019-01-01", "string" ]
               , [ 20190101    , "number" ]
               , [ { }         , "unblessed hashref" ]
+              , [ [ ]         , "unblessed arrayref" ]
               , [ $east       , "wrong object" ]
                ) {
     my ($value, $type) = @$pair;
