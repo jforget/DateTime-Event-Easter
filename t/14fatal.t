@@ -48,10 +48,12 @@ BEGIN {
   }
 }
 
-plan tests => 31;
+plan tests => 1 + 6 + 4 * 2 * (1 + 4) + 8 + 8;
 
+# 1 test
 like( exception { DateTime::Event::Easter->new(as =>  'spin'); } , qr/Argument 'as' must be 'point' or 'span'./ , "Argument 'as' must be 'point' or 'span'." );
 
+# 6 tests
 lives_ok  { DateTime::Event::Easter->new(as =>  'point' ); } "Use the singular form 'point'";
 lives_ok  { DateTime::Event::Easter->new(as =>  'span'  ); } "Use the singular form 'span'";
 lives_ok  { DateTime::Event::Easter->new(as =>  'points'); } "Use the plural form 'points'";
@@ -59,17 +61,33 @@ lives_ok  { DateTime::Event::Easter->new(as =>  'spans' ); } "Use the plural for
 lives_ok  { DateTime::Event::Easter->new(as =>  'POINT' ); } "Use the upper-case singular form 'POINT'";
 lives_ok  { DateTime::Event::Easter->new(as =>  'Span'  ); } "Use the capitalized singular form 'Span'";
 
+# 4 x 2 x (1 + 4) tests
 my $west =  DateTime::Event::Easter->new();
 my $east =  DateTime::Event::Easter->new(easter => 'eastern');
-like( exception { $west->following("2019-01-01"); } , qr/Dates need to be datetime objects/ , "Using a string instead of a DateTime object in following" );
-like( exception { $west->previous ("2019-01-01"); } , qr/Dates need to be datetime objects/ , "Using a string instead of a DateTime object in previous" );
-like( exception { $west->closest  ("2019-01-01"); } , qr/Dates need to be datetime objects/ , "Using a string instead of a DateTime object in closest" );
-like( exception { $west->is       ("2019-01-01"); } , qr/Dates need to be datetime objects/ , "Using a string instead of a DateTime object in is" );
-like( exception { $east->following("2019-01-01"); } , qr/Dates need to be datetime objects/ , "Using a string instead of a DateTime object in following" );
-like( exception { $east->previous ("2019-01-01"); } , qr/Dates need to be datetime objects/ , "Using a string instead of a DateTime object in previous" );
-like( exception { $east->closest  ("2019-01-01"); } , qr/Dates need to be datetime objects/ , "Using a string instead of a DateTime object in closest" );
-like( exception { $east->is       ("2019-01-01"); } , qr/Dates need to be datetime objects/ , "Using a string instead of a DateTime object in is" );
+for my $method (qw/following previous closest is/) {
+  like( exception { $west->$method(); } , qr/Dates need to be datetime objects/ , "Using no parameter instead of a DateTime object in $method" );
+  like( exception { $east->$method(); } , qr/Dates need to be datetime objects/ , "Using no parameter instead of a DateTime object in $method" );
+  for my $pair ([ "2019-01-01", "string" ]
+              , [ 20190101    , "number" ]
+              , [ { }         , "unblessed hashref" ]
+              , [ $east       , "wrong object" ]
+               ) {
+    my ($value, $type) = @$pair;
+    like( exception { $west->$method($value); } , qr/Dates need to be datetime objects/ , "Using a $type instead of a DateTime object in $method" );
+    like( exception { $east->$method($value); } , qr/Dates need to be datetime objects/ , "Using a $type instead of a DateTime object in $method" );
+  }
+}
 
+#like( exception { $west->following("2019-01-01"); } , qr/Dates need to be datetime objects/ , "Using a string instead of a DateTime object in following" );
+#like( exception { $west->previous ("2019-01-01"); } , qr/Dates need to be datetime objects/ , "Using a string instead of a DateTime object in previous" );
+#like( exception { $west->closest  ("2019-01-01"); } , qr/Dates need to be datetime objects/ , "Using a string instead of a DateTime object in closest" );
+#like( exception { $west->is       ("2019-01-01"); } , qr/Dates need to be datetime objects/ , "Using a string instead of a DateTime object in is" );
+#like( exception { $east->following("2019-01-01"); } , qr/Dates need to be datetime objects/ , "Using a string instead of a DateTime object in following" );
+#like( exception { $east->previous ("2019-01-01"); } , qr/Dates need to be datetime objects/ , "Using a string instead of a DateTime object in previous" );
+#like( exception { $east->closest  ("2019-01-01"); } , qr/Dates need to be datetime objects/ , "Using a string instead of a DateTime object in closest" );
+#like( exception { $east->is       ("2019-01-01"); } , qr/Dates need to be datetime objects/ , "Using a string instead of a DateTime object in is" );
+
+# 8 tests
 my $d1 = DateTime->new(year => 2019, month =>  1, day =>  1);
 my $d9 = DateTime->new(year => 2019, month => 12, day => 31);
 like( exception { $west->as_set(                      to => $d9         ); } , qr/You must specify both a 'from' and a 'to' datetime/ , "Missing begin date" );
@@ -80,6 +98,8 @@ like( exception { $west->as_set(                      to => $d9         , inclus
 like( exception { $west->as_set(from => $d1                             , inclusive => 1); } , qr/You must specify both a 'from' and a 'to' datetime/ , "Missing end date" );
 like( exception { $west->as_set(from => '2019-01-01', to => $d9         , inclusive => 1); } , qr/You must specify both a 'from' and a 'to' datetime/ , "Wrong begin date" );
 like( exception { $west->as_set(from => $d1,          to => '2019-12-31', inclusive => 1); } , qr/You must specify both a 'from' and a 'to' datetime/ , "Wrong end date" );
+
+# 8 tests
 like( exception { easter               ('a') } , qr/Year value '.*' should be numeric./ , "Wrong numeric argument to easter" ) ;
 like( exception { golden_number        ('a') } , qr/Year value '.*' should be numeric./ , "Wrong numeric argument to golden_number" ) ;
 like( exception { western_epact        ('a') } , qr/Year value '.*' should be numeric./ , "Wrong numeric argument to western_epact" ) ;
