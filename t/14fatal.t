@@ -79,15 +79,6 @@ for my $method (qw/following previous closest is/) {
   }
 }
 
-#like( exception { $west->following("2019-01-01"); } , qr/Dates need to be datetime objects/ , "Using a string instead of a DateTime object in following" );
-#like( exception { $west->previous ("2019-01-01"); } , qr/Dates need to be datetime objects/ , "Using a string instead of a DateTime object in previous" );
-#like( exception { $west->closest  ("2019-01-01"); } , qr/Dates need to be datetime objects/ , "Using a string instead of a DateTime object in closest" );
-#like( exception { $west->is       ("2019-01-01"); } , qr/Dates need to be datetime objects/ , "Using a string instead of a DateTime object in is" );
-#like( exception { $east->following("2019-01-01"); } , qr/Dates need to be datetime objects/ , "Using a string instead of a DateTime object in following" );
-#like( exception { $east->previous ("2019-01-01"); } , qr/Dates need to be datetime objects/ , "Using a string instead of a DateTime object in previous" );
-#like( exception { $east->closest  ("2019-01-01"); } , qr/Dates need to be datetime objects/ , "Using a string instead of a DateTime object in closest" );
-#like( exception { $east->is       ("2019-01-01"); } , qr/Dates need to be datetime objects/ , "Using a string instead of a DateTime object in is" );
-
 # 8 tests
 my $d1 = DateTime->new(year => 2019, month =>  1, day =>  1);
 my $d9 = DateTime->new(year => 2019, month => 12, day => 31);
