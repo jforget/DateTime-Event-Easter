@@ -139,8 +139,8 @@ sub _following_point {
   }
 
   my $easter_start_dt = $event_start_dt - $self->{offset};
-  my $start_mmdd  = $easter_start_dt->strftime("%m-%d");
-  my $latest_mmdd = '04-25';
+  my $start_mmdd      = $easter_start_dt->strftime("%m-%d");
+  my $latest_mmdd     = '04-25';
   my $easter_sunday;
   if ($start_mmdd le $latest_mmdd) {
     $easter_sunday = $self->_easter($easter_start_dt->year);
@@ -185,8 +185,8 @@ sub _previous_point {
   }
 
   my $easter_start_dt = $event_start_dt - $self->{offset};
-  my $start_mmdd    = $easter_start_dt->strftime("%m-%d");
-  my $earliest_mmdd = '03-21';
+  my $start_mmdd      = $easter_start_dt->strftime("%m-%d");
+  my $earliest_mmdd   = '03-21';
   my $easter_sunday;
   if ($start_mmdd ge $earliest_mmdd) {
     $easter_sunday = $self->_easter($easter_start_dt->year);
@@ -221,9 +221,9 @@ sub closest {
                         ? _tospan($easter)
                         : $easter;
     }
-    my $following_easter = $self->following($dt);
+    my $following_easter = $self->_following_point($dt);
     my $following_delta  = $following_easter - $dt;
-    my $previous_easter  = $self->previous($dt);
+    my $previous_easter  = $self->_previous_point($dt);
         
     my $easter = ($previous_easter + $following_delta < $dt) 
         ? $following_easter 
@@ -380,7 +380,7 @@ sub _easter {
 
 sub western_easter {
   my ($year) = @_;
-  $year ||= '';    # should be //= in 5.10.0 or later, but we keep the compatibilit with 5.6.1
+  $year ||= '';    # should be //= in 5.10.0 or later, but we keep the compatibility with 5.6.1
   croak "Year value '$year' should be numeric." if $year!~/^\-?\d+$/;
     
   my $epact_1 = western_epact($year);
@@ -409,7 +409,7 @@ sub western_easter {
 
 sub eastern_easter {
   my $year = shift;
-  $year ||= '';    # should be //= in 5.10.0 or later, but we keep the compatibilit with 5.6.1
+  $year ||= '';    # should be //= in 5.10.0 or later, but we keep the compatibility with 5.6.1
   croak "Year value '$year' should be numeric." if $year!~/^\-?\d+$/;
     
   my $epact_1 = eastern_epact($year);
@@ -432,7 +432,7 @@ sub eastern_easter {
 
 sub golden_number {
   my ($year) = @_;
-  $year ||= '';    # should be //= in 5.10.0 or later, but we keep the compatibilit with 5.6.1
+  $year ||= '';    # should be //= in 5.10.0 or later, but we keep the compatibility with 5.6.1
   croak "Year value '$year' should be numeric." if $year!~/^\-?\d+$/;
   return $year % 19 + 1;
 }
@@ -442,7 +442,7 @@ sub golden_number {
 #
 sub western_epact {
   my ($year) = @_;
-  $year ||= '';    # should be //= in 5.10.0 or later, but we keep the compatibilit with 5.6.1
+  $year ||= '';    # should be //= in 5.10.0 or later, but we keep the compatibility with 5.6.1
   croak "Year value '$year' should be numeric." if $year!~/^\-?\d+$/;
   # centu is not the century, but nearly so
   my $centu      = int($year / 100);
@@ -460,7 +460,7 @@ sub western_epact {
 #
 sub western_sunday_letter {
   my ($year) = @_;
-  $year ||= '';    # should be //= in 5.10.0 or later, but we keep the compatibilit with 5.6.1
+  $year ||= '';    # should be //= in 5.10.0 or later, but we keep the compatibility with 5.6.1
   croak "Year value '$year' should be numeric." if $year!~/^\-?\d+$/;
   my $prec = $year - 1;
   my $n1 = 7 - ($year + int($prec / 4) - int($prec / 100) + int($prec / 400) + 6) % 7;
@@ -477,7 +477,7 @@ sub western_sunday_letter {
 }
 sub western_sunday_number {
   my ($year) = @_;
-  $year ||= '';    # should be //= in 5.10.0 or later, but we keep the compatibilit with 5.6.1
+  $year ||= '';    # should be //= in 5.10.0 or later, but we keep the compatibility with 5.6.1
   croak "Year value '$year' should be numeric." if $year!~/^\-?\d+$/;
   return 7 - ($year + int($year / 4) - int($year / 100) + int($year / 400) + 6) % 7;
 }
@@ -488,7 +488,7 @@ sub western_sunday_number {
 #
 sub eastern_epact {
   my ($year) = @_;
-  $year ||= '';    # should be //= in 5.10.0 or later, but we keep the compatibilit with 5.6.1
+  $year ||= '';    # should be //= in 5.10.0 or later, but we keep the compatibility with 5.6.1
   croak "Year value '$year' should be numeric." if $year!~/^\-?\d+$/;
   return (11 * golden_number($year) + 27) % 30;
 }
@@ -498,7 +498,7 @@ sub eastern_epact {
 #
 sub eastern_sunday_letter {
   my ($year) = @_;
-  $year ||= '';    # should be //= in 5.10.0 or later, but we keep the compatibilit with 5.6.1
+  $year ||= '';    # should be //= in 5.10.0 or later, but we keep the compatibility with 5.6.1
   croak "Year value '$year' should be numeric." if $year!~/^\-?\d+$/;
   my $prec = $year - 1;
   my $n1 = 7 - ($year + int($prec / 4) - 3) % 7;
@@ -515,7 +515,7 @@ sub eastern_sunday_letter {
 }
 sub eastern_sunday_number {
   my ($year) = @_;
-  $year ||= '';    # should be //= in 5.10.0 or later, but we keep the compatibilit with 5.6.1
+  $year ||= '';    # should be //= in 5.10.0 or later, but we keep the compatibility with 5.6.1
   croak "Year value '$year' should be numeric." if $year!~/^\-?\d+$/;
   return 7 - ($year + int($year / 4) - 3) % 7;
 }
@@ -911,9 +911,9 @@ for exactly 24 hours or exactly one day which gives 23 hours?
 A similar question exists for DST "fall backward" day in the Southern
 countries.
 
-Also, since you can use a numeric C<day> offset up to 250, you can reach
-the Northern "fall backwards" and the Southern "spring forward" days, where
-the same problem will happen in reverse.
+Also, since  you can use  a numeric  C<day> offset beyond  the Trinity
+sunday, you can  reach the Northern "fall backwards"  and the Southern
+"spring forward" days, where the same problem will happen in reverse.
 
 =head1 THE SMALL PRINT
 
