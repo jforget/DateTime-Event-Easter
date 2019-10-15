@@ -89,6 +89,7 @@ sub following {
   croak ("Dates need to be datetime objects")
     unless defined($dt)
         && ref($dt) ne ''
+        && ref($dt) ne 'SCALAR'
         && ref($dt) ne 'HASH'
         && ref($dt) ne 'ARRAY'
         && $dt->can('utc_rd_values');
@@ -162,6 +163,7 @@ sub previous {
   croak ("Dates need to be datetime objects")
     unless defined($dt)
         && ref($dt) ne ''
+        && ref($dt) ne 'SCALAR'
         && ref($dt) ne 'HASH'
         && ref($dt) ne 'ARRAY'
         && $dt->can('utc_rd_values');
@@ -205,6 +207,7 @@ sub closest {
   croak ("Dates need to be datetime objects")
     unless defined($dt)
         && ref($dt) ne ''
+        && ref($dt) ne 'SCALAR'
         && ref($dt) ne 'HASH'
         && ref($dt) ne 'ARRAY'
         && $dt->can('utc_rd_values');
@@ -236,6 +239,7 @@ sub is {
   croak ("Dates need to be datetime objects")
     unless defined($dt)
         && ref($dt) ne ''
+        && ref($dt) ne 'SCALAR'
         && ref($dt) ne 'HASH'
         && ref($dt) ne 'ARRAY'
         && $dt->can('utc_rd_values');
@@ -376,6 +380,7 @@ sub _easter {
 
 sub western_easter {
   my ($year) = @_;
+  $year ||= '';    # should be //= in 5.10.0 or later, but we keep the compatibilit with 5.6.1
   croak "Year value '$year' should be numeric." if $year!~/^\-?\d+$/;
     
   my $epact_1 = western_epact($year);
@@ -404,6 +409,7 @@ sub western_easter {
 
 sub eastern_easter {
   my $year = shift;
+  $year ||= '';    # should be //= in 5.10.0 or later, but we keep the compatibilit with 5.6.1
   croak "Year value '$year' should be numeric." if $year!~/^\-?\d+$/;
     
   my $epact_1 = eastern_epact($year);
@@ -426,6 +432,7 @@ sub eastern_easter {
 
 sub golden_number {
   my ($year) = @_;
+  $year ||= '';    # should be //= in 5.10.0 or later, but we keep the compatibilit with 5.6.1
   croak "Year value '$year' should be numeric." if $year!~/^\-?\d+$/;
   return $year % 19 + 1;
 }
@@ -435,6 +442,7 @@ sub golden_number {
 #
 sub western_epact {
   my ($year) = @_;
+  $year ||= '';    # should be //= in 5.10.0 or later, but we keep the compatibilit with 5.6.1
   croak "Year value '$year' should be numeric." if $year!~/^\-?\d+$/;
   # centu is not the century, but nearly so
   my $centu      = int($year / 100);
@@ -452,6 +460,7 @@ sub western_epact {
 #
 sub western_sunday_letter {
   my ($year) = @_;
+  $year ||= '';    # should be //= in 5.10.0 or later, but we keep the compatibilit with 5.6.1
   croak "Year value '$year' should be numeric." if $year!~/^\-?\d+$/;
   my $prec = $year - 1;
   my $n1 = 7 - ($year + int($prec / 4) - int($prec / 100) + int($prec / 400) + 6) % 7;
@@ -468,6 +477,7 @@ sub western_sunday_letter {
 }
 sub western_sunday_number {
   my ($year) = @_;
+  $year ||= '';    # should be //= in 5.10.0 or later, but we keep the compatibilit with 5.6.1
   croak "Year value '$year' should be numeric." if $year!~/^\-?\d+$/;
   return 7 - ($year + int($year / 4) - int($year / 100) + int($year / 400) + 6) % 7;
 }
@@ -478,6 +488,7 @@ sub western_sunday_number {
 #
 sub eastern_epact {
   my ($year) = @_;
+  $year ||= '';    # should be //= in 5.10.0 or later, but we keep the compatibilit with 5.6.1
   croak "Year value '$year' should be numeric." if $year!~/^\-?\d+$/;
   return (11 * golden_number($year) + 27) % 30;
 }
@@ -487,6 +498,7 @@ sub eastern_epact {
 #
 sub eastern_sunday_letter {
   my ($year) = @_;
+  $year ||= '';    # should be //= in 5.10.0 or later, but we keep the compatibilit with 5.6.1
   croak "Year value '$year' should be numeric." if $year!~/^\-?\d+$/;
   my $prec = $year - 1;
   my $n1 = 7 - ($year + int($prec / 4) - 3) % 7;
@@ -503,6 +515,7 @@ sub eastern_sunday_letter {
 }
 sub eastern_sunday_number {
   my ($year) = @_;
+  $year ||= '';    # should be //= in 5.10.0 or later, but we keep the compatibilit with 5.6.1
   croak "Year value '$year' should be numeric." if $year!~/^\-?\d+$/;
   return 7 - ($year + int($year / 4) - 3) % 7;
 }
