@@ -16,11 +16,12 @@ Check copyright years in:
 
 Check URL, replacing http by https when possible
 
-Kwalitee: compare with the previous version https://cpants.cpanauthors.org/release/JFORGET/DateTime-Event-Easter-1.07
+Kwalitee: compare with the previous version https://cpants.cpanauthors.org/release/JFORGET/DateTime-Event-Easter-1.08
 
 MANIFEST: among others, check that all new test files are mentionned and that removed files no longer appear
 
 Test with all installed perlbrew versions
+Test with older DateTime.pm versions (because of the stringification of DT::C::Julian objects)
 
 Coverage: preferably with perlbrew perl-5.28.0
 
@@ -41,13 +42,12 @@ After release
 =============
 
 Github:
-    git tag -m 'Release to CPAN' v1.08
+    git tag -m 'Release to CPAN' v1.09
     git push --tags -u origin master
 
 Change version number in:
 -- Changes
 -- Makefile.PL
--- README
 -- lib/DateTime/Event/Easter.pm
-
+-- checklist
 

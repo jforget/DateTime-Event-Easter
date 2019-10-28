@@ -25,7 +25,7 @@ require Exporter;
 
 @EXPORT_OK = qw(easter golden_number western_epact western_sunday_letter western_sunday_number
                                      eastern_epact eastern_sunday_letter eastern_sunday_number);
-$VERSION = '1.08';
+$VERSION = '1.09';
 
 sub new {
     my $class = shift;
