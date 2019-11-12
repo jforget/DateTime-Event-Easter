@@ -16,7 +16,7 @@ Check copyright years in:
 
 Check URL, replacing http by https when possible
 
-Kwalitee: compare with the previous version https://cpants.cpanauthors.org/release/JFORGET/DateTime-Event-Easter-1.08
+Kwalitee: compare with the previous version https://cpants.cpanauthors.org/release/JFORGET/DateTime-Event-Easter-1.09
 
 MANIFEST: among others, check that all new test files are mentionned and that removed files no longer appear
 
@@ -42,7 +42,7 @@ After release
 =============
 
 Github:
-    git tag -m 'Release to CPAN' v1.09
+    git tag -m 'Release to CPAN' v1.10
     git push --tags -u origin master
 
 Change version number in:

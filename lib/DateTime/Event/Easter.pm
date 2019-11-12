@@ -25,7 +25,7 @@ require Exporter;
 
 @EXPORT_OK = qw(easter golden_number western_epact western_sunday_letter western_sunday_number
                                      eastern_epact eastern_sunday_letter eastern_sunday_number);
-$VERSION = '1.09';
+$VERSION = '1.10';
 
 sub new {
     my $class = shift;
@@ -745,7 +745,7 @@ chaining.
 
 Deprecated method.
 
-In the  next version (1.10)  or in October  2021 (two years  after the
+In the  next version (1.11)  or in October  2021 (two years  after the
 v1.08 initial  announcement), whichever  comes last, this  method will
 emit  a warning.  And within  another two  years /  one version,  this
 method will be removed.

@@ -52,15 +52,15 @@ WriteMakefile(
        dynamic_config => 0,
        provides       => {
            'DateTime::Event::Easter' => {
-                file => 'lib/DateTime/Event/Easter.pm'
-              , version => '1.09'
+                file    => 'lib/DateTime/Event/Easter.pm'
+              , version => '1.10'
            },
        },
        'meta-spec' => { version => 2 },
        prereqs => {
          test => {
            recommends => {
-             'Test::Fatal'                      => '0',
+             'Test::Fatal' => '0',
            },
          },
        },

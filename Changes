@@ -145,3 +145,5 @@ Note on version conventions:
 1.09 Tue 2019-11-12
         - Fix minor compatibility issue about DT::C::Julian stringification with older versions of DateTime.pm.
 	- Some documentation improvements.
+
+1.10 xxx yyyy-mm-dd
