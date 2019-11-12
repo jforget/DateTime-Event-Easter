@@ -7,7 +7,7 @@ Check spaces vs tabs, check encoding, check "use utf8;"
 
 Check version number in:
 -- Makefile.PL
--- lib/DateTime/Event/Easter.pm, code ($VERSION)
+-- lib/DateTime/Event/Easter.pm, code ($VERSION and POD for "as_old_set" method)
 
 Check copyright years in:
 -- Makefile.PL
