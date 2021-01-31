@@ -1,7 +1,7 @@
 # -*- encoding: utf-8; indent-tabs-mode: nil -*-
 #
 #     Perl DateTime extension for computing the dates for Easter and related feasts
-#     Copyright © 2003-2004, 2015, 2019 Rick Measham and Jean Forget, all rights reserved
+#     Copyright (c) 2003-2004, 2015, 2019, 2021 Rick Measham and Jean Forget, all rights reserved
 #
 #     See the license in the embedded documentation below.
 #
@@ -959,11 +959,26 @@ Support for this module, and for all DateTime modules will be given
 through the DateTime mailing list - datetime@perl.org.
 See L<https://lists.perl.org/list/datetime.html>.
 
-Bugs should be reported through rt.cpan.org. See
-L<https://rt.cpan.org/Public/Dist/Display.html?Name=DateTime-Event-Easter>.
+Please   report  any   bugs   or  feature   requests   to  Github   at
+L<https://github.com/jforget/DateTime-Event-Easter>,  and   create  an
+issue or submit a pull request.
 
-Or you can try to submit a pull request to
-L<https://github.com/jforget/DateTime-Event-Easter>.
+If you have no  feedback after a week or so, try to  reach me by email
+at JFORGET  at cpan  dot org.  The notification  from Github  may have
+failed to reach  me. In your message, please  mention the distribution
+name in the subject, so my spam  filter and I will easily dispatch the
+email to the proper folder.
+
+On the other  hand, I may be  on vacation or away from  Internet for a
+good  reason. Do  not be  upset if  I do  not answer  immediately. You
+should write  me at a leasurely  rythm, about once per  month, until I
+react.
+
+If after about six  months or a year, there is  still no reaction from
+me, you can worry and start the CPAN procedure for module adoption.
+See L<https://groups.google.com/g/perl.module-authors/c/IPWjASwuLNs>
+L<https://www.cpan.org/misc/cpan-faq.html#How_maintain_module>
+and L<https://www.cpan.org/misc/cpan-faq.html#How_adopt_module>.
 
 =head2 AUTHOR
 
@@ -998,10 +1013,10 @@ later for debugging DT::E::Easter version 1.08.
 
 =head2 COPYRIGHT
 
-© Copyright 2003, 2004, 2015, 2019 Rick Measham and Jean Forget. All
-rights reserved. This program is free software; you can redistribute
-it and/or modify it under the same terms as Perl itself: GNU
-Public License version 1 or later and Perl Artistic License.
+(c)  Copyright 2003,  2004, 2015,  2019,  2021 Rick  Measham and  Jean
+Forget. All  rights reserved. This  program is free software;  you can
+redistribute it and/or modify it under  the same terms as Perl itself:
+GNU Public License version 1 or later and Perl Artistic License.
 
 The full text of the license can be found in the F<LICENSE> file
 included with this module or at

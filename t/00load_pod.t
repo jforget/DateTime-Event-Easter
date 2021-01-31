@@ -1,9 +1,8 @@
-# -*- perl -*-
-# -*- encoding: utf-8; indent-tabs-mode: nil -*-
+# -*- perl; encoding: utf-8; indent-tabs-mode: nil -*-
 #
 #     t/00load_pod.t - check module loading and documentation
 #     Test script for DateTime::Event::Easter
-#     Copyright © 2003-2004, 2015, 2019 Rick Measham and Jean Forget, all rights reserved
+#     Copyright (c) 2003-2004, 2015, 2019, 2021 Rick Measham and Jean Forget, all rights reserved
 #
 #     This program is distributed under the same terms as Perl:
 #     GNU Public License version 1 or later and Perl Artistic License

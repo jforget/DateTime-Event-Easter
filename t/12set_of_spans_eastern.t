@@ -1,7 +1,7 @@
 # -*- encoding: utf-8; indent-tabs-mode: nil -*-
 #
 #     Test script for DateTime::Event::Easter
-#     Copyright © 2019 Rick Measham and Jean Forget, all rights reserved
+#     Copyright (c) 2019, 2021 Rick Measham and Jean Forget, all rights reserved
 #
 #     This program is distributed under the same terms as Perl:
 #     GNU Public License version 1 or later and Perl Artistic License

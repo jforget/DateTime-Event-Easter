@@ -1,7 +1,7 @@
 # -*- encoding: utf-8; indent-tabs-mode: nil -*-
 #
 #     Example script for DateTime::Event::Easter
-#     Copyright © 2015, 2019, Jean Forget, all rights reserved
+#     Copyright (c) 2015, 2019, 2021 Jean Forget, all rights reserved
 #
 #     The executable part of this program is distributed under the same terms
 #     as Perl: GNU Public License version 1 or later and Perl Artistic License

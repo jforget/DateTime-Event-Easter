@@ -1,6 +1,6 @@
 #
 #     Configuration script for DateTime::Event::Easter
-#     Copyright © 2003-2004, 2015, 2019 Rick Measham and Jean Forget, all rights reserved
+#     Copyright (c) 2003-2004, 2015, 2019, 2021 Rick Measham and Jean Forget, all rights reserved
 #
 #     This program is distributed under the same terms as Perl 5.16.3:
 #     GNU Public License version 1 or later and Perl Artistic License
@@ -69,6 +69,9 @@ WriteMakefile(
                type => 'git',
                url  => 'https://github.com/jforget/DateTime-Event-Easter.git',
                web  => 'https://github.com/jforget/DateTime-Event-Easter',
+           },
+           bugtracker => {
+               web  => 'https://github.com/jforget/DateTime-Event-Easter/issues',
            },
        },
     },
